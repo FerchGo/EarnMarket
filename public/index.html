@@ -2,42 +2,665 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <a rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+    <meta name="description" content="Web site created using create-react-app"/>
+    <a rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <a rel="manifest" href="%PUBLIC_URL%/manifest.json" />   
+    <a rel="styles" href="/src/assets/main.css"/>
     <title>React App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    <script>
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+    }
+    
+    const toggledark = document.documentElement.className === ('dark');
+    const toggleTheme = document.documentElement.className === ('theme');
+    const toggleLight = document.documentElement.className === ('light');
+    
+    const twoDark = ()=> {
+      toggledark.value = document.documentElement.classList.toggle('dark');
+      toggledark.value 
+      ? (localStorage.theme = 'light')
+      : (localStorage.theme = 'dark');
+    }; 
+    const twoLight = ()=> {
+      toggleLight.value = document.documentElement.classList.toggle('dark');
+      toggleLight.value 
+      ? (localStorage.theme = 'dark')
+      : (localStorage.theme = 'light');
+    }; 
+    const twoSystem = ()=> {
+      toggleTheme.value = document.documentElement.classList.toggle('theme');
+      toggleTheme.value 
+      ? (localStorage.theme = 'dark')
+      : (localStorage.theme = 'light');
+    }; 
+    </script>
+    <div class="nextra-container main-container flex flex-col">
+      <script>
+        try {
+          if (localStorage.getItem("nextra-banner") === "0") {
+            document.body.classList.add("nextra-banner-hidden");
+          }
+        } catch (e) {}
+        </script> 
+     <div
+     class="nextra-nav-container z-20 sticky bg-transparent w-full top-0"
+     >
+       <div
+         class="nextra-nav-container-blur absolute w-full h-full bg-white dark:bg-dark pointer-events-none"
+       ></div>
+       <nav class="flex max-w-[90rem] mx-auto items-center left-0 right-0 h-16 pl-[max(env(safe-area-inset-left),1.5rem)] pr-[max(env(safe-area-inset-right),1.5rem)]">
+         <div class="w-full flex items-center mr-2">
+           <a class="no-underline text-current inline-flex items-center hover:opacity-75" href="/">
+             <img src="./mainimg/Newbrandlogo.png" height="65" width="65" style="margin-right: 1em"/>
+             <h1 class="mr-4 hidden md:inline-block">
+               Welcome to EARN-MARKET & More
+               <span style="opacity: 0.2"></span>
+             </h1>
+           </a>
+         </div>
+         <div class="w-full"></div>
+         <a class="nextra-nav-a no-underline whitespace-nowrap mr-4 hidden md:inline-block active text-current" aria-selected="true" href="/patterns">All Articles</a>
+         <div class="flex-1">
+           <div class="hidden md:inline-block mr-2">
+             <div class="relative w-full nextra-search nextra-flexsearch md:w-64">
+              <!-- <div class="z-10 search-overlay"></div> -->
+               <div class="relative flex items-center">
+                 <input type="search" class="block w-full px-3 py-2 leading-tight rounded-lg appearance-none focus:outline-none focus:ring-1 focus:ring-gray-200 focus:bg-white hover:bg-opacity-5 transition-colors dark:focus:bg-dark dark:focus:ring-gray-100 dark:focus:ring-opacity-20 formulario btn" placeholder="Search documentation..." spellcheck="false" data-focus-visible-added>
+                 <!-- line below must be hidden when the first click is settled -->
+                 <ul class="HIDDENN Result absolute z-10 px-0 py-2.5 m-0 mt-2 top-full rounded-xl overflow-hidden overscroll-contain shadow-xl list-none">
+                  <span class="block p-5 text-center text-gray-400 text-sm select-none">No results found....</span>
+                 </ul> 
+                 <div class="hidden sm:flex absolute inset-y-0 right-0 py-1.5 pr-1.5 select-none pointer-events-none">
+                   <kbd class="inline-flex items-center px-2 font-mono text-sm font-medium bg-white dark:bg-dark dark:bg-opacity-50 text-gray-400 dark:text-gray-500 dark:border-gray-100 dark:border-opacity-20 border rounded">/</kbd>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <a class="text-current p-2" href="https://github.com/EarnMarket" target="_blank" rel="noreferrer"><svg height="24" viewBox="2 2 20 20" fill="none" aria-hidden="true">
+             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z" fill="currentColor"></path></svg>
+             <span class="sr-only">GitHub</span>
+         </a>
+         <button class="nextra-menu-icon block md:hidden p-2">
+           <svg fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" class="">
+             <g>
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16"></path>
+             </g>
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16"></path>
+             <g>
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 18h16"></path>
+             </g>
+           </svg>
+         </button>
+         <div class="-mr-2"></div>  
+       </nav>
+     </div>
+     <div class="max-w-[90rem] w-full mx-auto">
+       <div class="flex flex-1 h-full">
+         <aside
+           class="nextra-sidebar-container nextra-scrollbar fixed flex-shrink-0 w-full md:w-64 md:sticky z-[15] top-16 self-start overflow-y-auto transform-none h-[calc(100vh-4rem)] md:block with-menu"
+         >
+           <div
+             class="nextra-sidebar select-none w-full h-full md:h-auto pl-[calc(env(safe-area-inset-left)-1.5rem)]"
+           >
+             <div class="p-4 min-h-[calc(100vh-4rem-61px)]">
+               <div class="nextra-sidebar-search mb-4 block md:hidden">
+                 <div
+                   class="relative w-full nextra-search nextra-flexsearch md:w-64"
+                 >
+                   <div class="relative flex items-center">
+                     <input
+                       type="search"
+                       class="block w-full px-3 py-2 leading-tight rounded-lg appearance-none focus:outline-none focus:ring-1 focus:ring-gray-200 focus:bg-white hover:bg-opacity-5 transition-colors dark:focus:bg-dark dark:focus:ring-gray-100 dark:focus:ring-opacity-20 formulario1 btn1"
+                       placeholder="Search documentation..."
+                       spellcheck="false" data-focus-visible-added
+                     />
+                     <ul class="HIDDENN Result1 absolute z-10 px-0 py-2.5 m-0 mt-2 top-full rounded-xl overflow-hidden overscroll-contain shadow-xl list-none">
+                      <span class="block p-5 text-center text-gray-400 text-sm select-none">No results found....</span>
+                     </ul> 
+                     <div
+                       class="hidden sm:flex absolute inset-y-0 right-0 py-1.5 pr-1.5 select-none pointer-events-none"
+                     >
+                       <kbd
+                         class="inline-flex items-center px-2 font-mono text-sm font-medium bg-white dark:bg-dark dark:bg-opacity-50 text-gray-400 dark:text-gray-500 dark:border-gray-100 dark:border-opacity-20 border rounded"
+                         >/</kbd
+                       >
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="hidden md:block">
+                 <ul>
+                   <li class="active">
+                     <a href="/Introduction">Introduction</a>
+                   </li>
+                   <li class="open">
+                     <a class="cursor-pointer">
+                       <span
+                         class="flex items-center justify-between irvin1">📂 ⏐ Main menu <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" height="1em" class="ml-2 p-[2px] rounded-sm min-w-[18px] h-[18px] dark:hover:bg-gray-100 hover:bg-gray-800 hover:bg-opacity-5 dark:hover:bg-opacity-5">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="transition-transform origin-center rotate-90"></path></svg>
+                       </span>
+                     </a>
+                     <div 
+                       class="transition-all ease-in-out duration-300 overflow-hidden transform-gpu motion-reduce:transition-none" 
+                     >
+                       <div
+                         class="nextra-collapse-content transition-opacity ease-in-out duration-500 overflow-hidden transform-gpu motion-reduce:transition-none"
+                         style="opacity: 1"
+                       >                          
+                         <ul class="openn">
+                          <li class=''><a href='/Introduction'
+                            >1. Introduction</a></li><li class=''>
+                                    <a
+                                        href='/Firstproject'
+                                    >2. Ecommerce</a>
+                                </li><li class=''>
+                                    <a
+                                        href='/Secondproject'
+                                    >3. Earn Market</a>
+                                </li><li class=''>
+                                    <a
+                                        href='/Thirdproject'
+                                    >4. Profile</a>
+                                </li><li class=''>
+                                    <a
+                                        href='/Fourproject'
+                                    >5. Aesthetics and Design</a>
+                                </li><li class=''>
+                                    <a
+                                        href='/Fiveproject'
+                                    >6. UX Design</a>
+                                </li><li class=''>
+                                    <a
+                                        href='/Finalmodule'
+                                    >7. Performance</a>
+                                </li>
+                         </ul>
+                       </div>
+                     </div>
+                   </li>
+                   <li class="open">
+                     <a class="cursor-pointer"
+                       ><span class="flex items-center justify-between irvin"
+                         >⚛️ ⏐ Learning React<svg
+                           fill="none"
+                           viewBox="0 0 24 24"
+                           stroke="currentColor"
+                           height="1em"
+                           class="ml-2 p-[2px] rounded-sm min-w-[18px] h-[18px] dark:hover:bg-gray-100 hover:bg-gray-800 hover:bg-opacity-5 dark:hover:bg-opacity-5 type2"
+                         >
+                           <path
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2"
+                             d="M9 5l7 7-7 7"
+                             class="transition-transform origin-center rotate-90"
+                           ></path></svg></span
+                     ></a>
+                     <div
+                       class="transition-all ease-in-out duration-300 overflow-hidden transform-gpu motion-reduce:transition-none"
+                     >
+                       <div
+                         class="nextra-collapse-content transition-opacity ease-in-out duration-500 overflow-hidden transform-gpu motion-reduce:transition-none"
+                         style="opacity: 1"
+                       >
+                         <ul class="closed">                          
+                          <li class=''>
+                            <a href='/Designskills'
+                            >1. Introduction To React</a>
+                          </li>
+                          <li class=''>
+                            <a
+                            href='/Firstdesign'
+                            >2. JSX language</a>
+                          </li>
+                          <li class=''>
+                            <a href='/Secondesign'
+                            >3. Rendering </a>
+                          </li>
+                          <li class=''>
+                            <a href='/Thirdesign'
+                            >4. Components & Props </a>
+                          </li>
+                          <li class=''>
+                            <a
+                            href='/Fourdesign'
+                            >5. State </a>
+                          </li>
+                          <li class=''>
+                            <a
+                            href='/Fivedesign'
+                            >6. Events & More </a>
+                          </li>
+                         </ul>
+                       </div>
+                     </div>
+                   </li>
+                   <li class="open">
+                     <a class="cursor-pointer"
+                       ><span class="flex items-center justify-between irvin3"
+                         >⚡️ ⏐ Learning JavaScript<svg
+                           fill="none"
+                           viewBox="0 0 24 24"
+                           stroke="currentColor"
+                           height="1em"
+                           class="ml-2 p-[2px] rounded-sm min-w-[18px] h-[18px] dark:hover:bg-gray-100 hover:bg-gray-800 hover:bg-opacity-5 dark:hover:bg-opacity-5 type3"
+                         >
+                           <path
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2"
+                             d="M9 5l7 7-7 7"
+                             class="transition-transform origin-center rotate-90"
+                           ></path></svg></span
+                     ></a>
+                     <div
+                       class="transition-all ease-in-out duration-300 overflow-hidden transform-gpu motion-reduce:transition-none"
+                     >
+                       <div
+                         class="nextra-collapse-content transition-opacity ease-in-out duration-500 overflow-hidden transform-gpu motion-reduce:transition-none"
+                         style="opacity: 1"
+                       >
+                         <ul class="closed3">
+                           <li class="">
+                             <a
+                               href="/Performancepatterns"
+                               >1. Starting with JS</a
+                             >
+                           </li>
+                           <li class="">
+                             <a
+                               href="/Staticimport"
+                               >2. JS Topics</a
+                             >
+                           </li>
+                           <li class="">
+                             <a
+                               href="/Dynamicimport"
+                               >3. JS Arrays & More</a
+                             >
+                           </li>
+                         </ul>
+                       </div>
+                     </div>
+                   </li>
+                   <li class="open">
+                     <a class="cursor-pointer"
+                       ><span class="flex items-center justify-between irvin4"
+                         >⚙️ ⏐ Performance <svg
+                           fill="none"
+                           viewBox="0 0 24 24"
+                           stroke="currentColor"
+                           height="1em"
+                           class="ml-2 p-[2px] rounded-sm min-w-[18px] h-[18px] dark:hover:bg-gray-100 hover:bg-gray-800 hover:bg-opacity-5 dark:hover:bg-opacity-5 type4"
+                         >
+                           <path
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2"
+                             d="M9 5l7 7-7 7"
+                             class="transition-transform origin-center rotate-90"
+                           ></path></svg></span
+                     ></a>
+                     <div
+                       class="transition-all ease-in-out duration-300 overflow-hidden transform-gpu motion-reduce:transition-none"
+                     >
+                       <div
+                         class="nextra-collapse-content transition-opacity ease-in-out duration-500 overflow-hidden transform-gpu motion-reduce:transition-none"
+                         style="opacity: 1"
+                       >
+                         <ul class="closed4">
+                           <li class="">
+                             <a
+                               href="/Renderingintro"
+                               >1. Starting </a
+                             >
+                           </li>
+                           <li class="">
+                             <a
+                               href="/Renderingclient"
+                               >2. Rendering right </a
+                             >
+                           </li>
+                           <li class="">
+                             <a
+                               href="/Renderingstatic"
+                               >3. Final Recomendations </a
+                             >
+                           </li>  
+                         </ul>
+                       </div>
+                     </div>
+                   </li>
+                 </ul>
+               </div>
+               
+<!-- here start burger menu section -->                  
+               
+               <div class="md:hidden">
+                 <ul>
+                   <li class="open active">
+                     <a class="cursor-pointer">
+                       <span class="flex items-center justify-between denk1"
+                         >All Content<svg
+                           fill="none"
+                           viewBox="0 0 24 24"
+                           stroke="currentColor"
+                           height="1em"
+                           class="ml-2 p-[2px] rounded-sm min-w-[18px] h-[18px] dark:hover:bg-gray-100 hover:bg-gray-800 hover:bg-opacity-5 dark:hover:bg-opacity-5 rota1"
+                         >
+                           <path
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2"
+                             d="M9 5l7 7-7 7"
+                             class="transition-transform origin-center rotate-90"
+                           ></path></svg></span
+                     ></a>
+                     <div
+                       class="transition-all ease-in-out duration-300 overflow-hidden transform-gpu motion-reduce:transition-none"
+                     >
+                       <div
+                         class="nextra-collapse-content transition-opacity ease-in-out duration-500 overflow-hidden transform-gpu motion-reduce:transition-none"
+                         style="opacity: 1"
+                       >
+                         <ul class="">
+                           <li class="active">
+                             <a href="/Introduction">Introduction</a>
+                             <ul>
+                               <li>
+                                 <a
+                                   href="#introduction"
+                                   class="active-anchor"
+                                   ><span class="flex text-sm"
+                                     ><span class="opacity-25">#</span
+                                     ><span class="mr-2"></span
+                                     ><span class="inline-block"
+                                       >Introduction</span
+                                     ></span
+                                   ></a
+                                 >
+                               </li>
+                             </ul>
+                           </li>
+                           <li class="open">
+                             <a class="cursor-pointer"
+                               ><span
+                                 class="flex items-center justify-between denk2"
+                                 >📂 ⏐ Main Menu<svg
+                                   fill="none"
+                                   viewBox="0 0 24 24"
+                                   stroke="currentColor"
+                                   height="1em"
+                                   class="ml-2 p-[2px] rounded-sm min-w-[18px] h-[18px] dark:hover:bg-gray-100 hover:bg-gray-800 hover:bg-opacity-5 dark:hover:bg-opacity-5 rota2"
+                                 >
+                                   <path
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     stroke-width="2"
+                                     d="M9 5l7 7-7 7"
+                                     class="transition-transform origin-center rotate-90"
+                                   ></path></svg></span
+                             ></a>
+                             <div
+                               class="transition-all ease-in-out duration-300 overflow-hidden transform-gpu motion-reduce:transition-none"
+                             >
+                               <div
+                                 class="nextra-collapse-content transition-opacity ease-in-out duration-500 overflow-hidden transform-gpu motion-reduce:transition-none"
+                                 style="opacity: 1"
+                               >
+                                 <ul class="hd2 retired2">
+                                  <li class=''><a href='/Introduction'
+                                    >1. Introduction</a>
+                                  </li>
+                                  <li class=''>
+                                            <a
+                                                href='/Firstproject'
+                                    >2. Ecommerce </a>
+                                  </li>
+                                  <li class=''>
+                                            <a
+                                                href='/Secondproject'
+                                      >3. Earn Market </a>
+                                  </li>
+                                  <li class=''>
+                                            <a
+                                                href='/Thirdproject'
+                                      >4. Profile </a>
+                                  </li>
+                                  <li class=''>
+                                      <a
+                                        href='/Fourproject'
+                                       >5. Aesthetics </a>
+                                  </li>
+                                  <li class=''>
+                                      <a
+                                        href='/Fiveproject'
+                                        >6. UX Design </a>
+                                  </li>
+                                  <li class=''>
+                                      <a
+                                        href='/Finalmodule'
+                                        >7. Performance</a>
+                                  </li>
+                                 </ul>
+                               </div>
+                             </div>
+                           </li>
+                           <li class="open">
+                             <a class="cursor-pointer"
+                               ><span
+                                 class="flex items-center justify-between denk3"
+                                 >⚛️ ⏐ Learning React <svg
+                                   fill="none"
+                                   viewBox="0 0 24 24"
+                                   stroke="currentColor"
+                                   height="1em"
+                                   class="ml-2 p-[2px] rounded-sm min-w-[18px] h-[18px] dark:hover:bg-gray-100 hover:bg-gray-800 hover:bg-opacity-5 dark:hover:bg-opacity-5 rota3"
+                                 >
+                                   <path
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     stroke-width="2"
+                                     d="M9 5l7 7-7 7"
+                                     class="transition-transform origin-center rotate-90"
+                                   ></path></svg></span
+                             ></a>
+                             <div
+                               class="transition-all ease-in-out duration-300 overflow-hidden transform-gpu motion-reduce:transition-none"
+                             >
+                               <div
+                                 class="nextra-collapse-content transition-opacity ease-in-out duration-500 overflow-hidden transform-gpu motion-reduce:transition-none"
+                                 style="opacity: 1"
+                               >
+                                 <ul class="hd3 retired3">
+                                  <li class=''>
+                                    <a href='/Designskills'
+                                    >1. Introduction to React </a>
+                                  </li>
+                                  <li class=''>
+                                    <a
+                                    href='/Firstdesign'
+                                    >2. JSX Language </a>
+                                  </li>
+                                  <li class=''>
+                                    <a href='/Secondesign'
+                                    >3. Rendering </a>
+                                  </li>
+                                  <li class=''>
+                                    <a href='/Thirdesign'
+                                    >4. Components & Props</a>
+                                  </li>
+                                  <li class=''>
+                                    <a
+                                    href='/Fourdesign'
+                                    >5. State </a>
+                                  </li>
+                                  <li class=''>
+                                    <a
+                                    href='/Fivedesign'
+                                    >6. Events & More </a>
+                                  </li>
+                                 </ul>
+                               </div>
+                             </div>
+                           </li>
+                           <li class="open">
+                             <a class="cursor-pointer"
+                               ><span
+                                 class="flex items-center justify-between denk4"
+                                 >⚡️ ⏐ Learning Javascript <svg
+                                   fill="none"
+                                   viewBox="0 0 24 24"
+                                   stroke="currentColor"
+                                   height="1em"
+                                   class="ml-2 p-[2px] rounded-sm min-w-[18px] h-[18px] dark:hover:bg-gray-100 hover:bg-gray-800 hover:bg-opacity-5 dark:hover:bg-opacity-5 rota4"
+                                 >
+                                   <path
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     stroke-width="2"
+                                     d="M9 5l7 7-7 7"
+                                     class="transition-transform origin-center rotate-90"
+                                   ></path></svg></span
+                             ></a>
+                             <div
+                               class="transition-all ease-in-out duration-300 overflow-hidden transform-gpu motion-reduce:transition-none"
+                             >
+                               <div
+                                 class="nextra-collapse-content transition-opacity ease-in-out duration-500 overflow-hidden transform-gpu motion-reduce:transition-none"
+                                 style="opacity: 1"
+                               >
+                                 <ul class="hd4 retired4">
+                                  <li class="">
+                                    <a
+                                      href="/Performancepatterns"
+                                      >1. Starting with JS</a
+                                    >
+                                  </li>
+                                  <li class="">
+                                    <a
+                                      href="/Staticimport"
+                                      >2. JS Topics</a
+                                    >
+                                  </li>
+                                  <li class="">
+                                    <a
+                                      href="/Dynamicimport"
+                                      >3. JS Loop & More </a
+                                    >
+                                  </li>
+                                 </ul>
+                               </div>
+                             </div>
+                           </li>
+                           <li class="open">
+                             <a class="cursor-pointer"
+                               ><span
+                                 class="flex items-center justify-between denk5"
+                                 >⚙️ ⏐ Performance <svg
+                                   fill="none"
+                                   viewBox="0 0 24 24"
+                                   stroke="currentColor"
+                                   height="1em"
+                                   class="ml-2 p-[2px] rounded-sm min-w-[18px] h-[18px] dark:hover:bg-gray-100 hover:bg-gray-800 hover:bg-opacity-5 dark:hover:bg-opacity-5 rota5"
+                                 >
+                                   <path
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     stroke-width="2"
+                                     d="M9 5l7 7-7 7"
+                                     class="transition-transform origin-center rotate-90"
+                                   ></path></svg></span
+                             ></a>
+                             <div
+                               class="transition-all ease-in-out duration-300 overflow-hidden transform-gpu motion-reduce:transition-none"
+                             >
+                               <div
+                                 class="nextra-collapse-content transition-opacity ease-in-out duration-500 overflow-hidden transform-gpu motion-reduce:transition-none"
+                                 style="opacity: 1"
+                               >
+                                 <ul class="hd5 retired5">
+                                  <li class="">
+                                    <a
+                                      href="/Renderingintro"
+                                      >1. Starting </a
+                                    >
+                                  </li>
+                                  <li class="">
+                                    <a
+                                      href="/Renderingclient"
+                                      >2. Rendering right </a
+                                    >
+                                  </li>
+                                  <li class="">
+                                    <a
+                                      href="/Renderingstatic"
+                                      >3. Final Recomendations </a
+                                    >
+                                  </li>
+                                 </ul>
+                               </div>
+                             </div>
+                           </li>
+                         </ul>
+                       </div>
+                     </div>
+                   </li>
+                 </ul>
+               </div>
+             </div> 
+             <!-- here finished the section to analys -->
+             <div class="nextra-sidebar-menu mx-2 border-t dark:border-neutral-800 shadow-[0_-12px_16px_white] dark:shadow-[0_-12px_16px_#111]">
+               <div class="bg-white dark:bg-dark py-4 flex gap-1 pb-4">               
+                 <div class="relative hidden md:block flex-1">
+                   <button class="lini rounded-md px-2 w-full text-left font-medium cursor-default text-xs h-7 transition-colors text-gray-600 dark:text-gray-400 focus:outline-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-primary-100 dark:hover:bg-opacity-5 dark:hover:text-gray-50" id="headlessui-listbox-button-undefined" type="button" aria-haspopup="true" aria-expanded="false">
+                     <div class="flex items-center gap-2 capitalize">
+                       <svg viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor">
+                         <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
+                         <span>light</span>
+                     </div>
+                   </button>
+                   <ul class="HIDDENN nene menu absolute bottom-[105%] min-w-full z-20 mt-1 bg-white dark:bg-neutral-800 dark:ring-white dark:ring-opacity-20 shadow-lg max-h-64 rounded-md py-1 ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none text-sm nene" aria-labelledby="headlessui-listbox-button-2" aria-orientation="vertical" id="headlessui-listbox-button-105" role="listbox" tabindex="0" style="width:210px; height:104">
+                     <li class="ones newefect text-gray-800 dark:text-gray-100 cursor-default select-none relative py-1.5 pl-3 pr-9 whitespace-nowrap" id="headlessui-listbox-option-41" role="option" tabindex="-1" onclick="twoLight()">Light</li>
+                     <li class="twos newefect text-gray-800 dark:text-gray-100 cursor-default select-none relative py-1.5 pl-3 pr-9 whitespace-nowrap" id="headlessui-listbox-option-42" role="option" tabindex="-1" onclick="twoDark()">Dark</li> 
+                     <li class="threes newefect text-gray-800 dark:text-gray-100 cursor-default select-none relative py-1.5 pl-3 pr-9 whitespace-nowrap" id="headlessui-listbox-option-43" role="option" tabindex="-1" onclick="twoSystem()">System <span class="absolute inset-y-0 right-0 flex items-center pr-3"><svg viewBox="0 0 20 20" width="1em" height="1em" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></span></li>
+                   </ul>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </aside>
+         <div id="reach-skip-nav" data-reach-skip-nav-content=""></div>
+            <div id="root4"></div> 
+       </div>
+     </div>
+    <aside> 
+       
+   </aside>
+       <footer class="bg-gray-100 dark:bg-neutral-900 pb-[env(safe-area-inset-bottom)]">
+       <div
+         class="max-w-[90rem] mx-auto pl-[max(env(safe-area-inset-left),1.5rem)] pr-[max(env(safe-area-inset-right),1.5rem)] py-12">
+         <div class="flex justify-between flex-col-reverse md:flex-row items-center md:items-end">
+           <span class="text-gray-600 dark:text-gray-400"
+             >2023 © EarnMarket
+             </span>
+           <div class="mt-6"></div>
+         </div>
+       </div>
+     </footer>
+   </div>
+ </div>
+<script src="./functhtml.js"></script>
+</body>
 </html>
