@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './assets/main.css';
+import App from './App.jsx';
+import { BrowserRouter } from 'react-router-dom';
 /* import Snippetone from './components/Snippet1';
 import Snippettwo from './components/Snippet2'; */
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
 
 const root4 = ReactDOM.createRoot(document.getElementById('root4'));
 root4.render(
